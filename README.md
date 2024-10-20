@@ -17,3 +17,8 @@ Para ejecutar este proyecto, necesitarás tener instalados los siguientes progra
 - Docker Compose v2.x o superior
 - Maven 3.x o superior
 - Java 21
+
+# Notas Adicionales
+- Cada microservicio tiene su propio puerto.
+- El archivo docker-compose.yml orquesta los microservicios y las bases de datos.
+- Las dependencias del proyecto están gestionadas mediante Maven.
