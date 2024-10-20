@@ -1,0 +1,44 @@
+version: '3'
+services:
+  ### postgres para inventario
+  db-inventory:
+    container_name: db-inventory
+    image: postgres:15.2
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ms_inventory           # Nombre de la base de datos
+      POSTGRES_USER: proyecto             # Usuario de la base de datos
+      POSTGRES_PASSWORD: Test123          # Contraseña del usuario
+    ports:
+      - "5431:5432"                       # 5431 en el host, 5432 en el contenedor (el puerto predeterminado de PostgreSQL)
+    expose:
+      - "5432"                            # Exponer el puerto 5432 dentro del contenedor
+
+  ### mysql para ordenes
+  db-orders:
+    container_name: db-orders
+    image: mysql:8.0.33
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: Test123          # Contraseña para el usuario root
+      MYSQL_DATABASE: ms_orders             # Nombre de la base de datos que deseas crear
+      MYSQL_USER: proyecto                  # Nombre del usuario que deseas crear
+      MYSQL_PASSWORD: Test123               # Contraseña para el usuario especificado
+    ports:
+      - "3308:3306"                         # 3308 en el host, 3306 en el contenedor
+    expose:
+      - "3306"
+
+  ### postgres para productos
+  db-products:
+    container_name: db-products
+    image: postgres:15.2
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ms_products
+      POSTGRES_USER: proyecto
+      POSTGRES_PASSWORD: Test123
+    ports:
+      - "5433:5432"   # Cambia el puerto del host a 5433 para evitar conflicto con el puerto de db-inventory
+    expose:
+      - "5432"
